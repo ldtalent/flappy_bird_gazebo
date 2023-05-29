@@ -1,0 +1,4 @@
+starting_distance: 10.0
+interpipe_distance: 5.0
+pipe_gap: 3.0
+pipe_separation_limits: [3.0, 8.0]  # [min, max] of obstacle gap

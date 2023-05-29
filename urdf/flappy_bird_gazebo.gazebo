@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="flappy_bird_gazebo">
+
+<gazebo>
+  <static>false</static>
+</gazebo>
+
+<gazebo>
+	<plugin name="gazebo_ros_force" filename="libgazebo_ros_force.so">
+		<alwaysOn>true</alwaysOn>
+		<update>100</update>
+		<updateRate>100.0</updateRate>
+		<bodyName>base_link</bodyName>
+		<topicName>force</topicName>
+	</plugin>
+</gazebo>
+
+<gazebo>
+	<plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+		<commandTopic>cmd_vel</commandTopic>
+		<odometryTopic>odom</odometryTopic>
+		<odometryFrame>odom</odometryFrame>
+		<odometryRate>50.0</odometryRate>
+		<robotBaseFrame>base_link</robotBaseFrame>
+		<cmdTimeout>-1.0</cmdTimeout>
+	</plugin>
+</gazebo>
+
+<!-- Contact Sensor -->
+<gazebo reference="base_link">
+	<sensor name="collision_sensor" type="contact">
+		<update_rate>100.0</update_rate>
+		<always_on>true</always_on>
+		<contact>
+			<collision>base_footprint_fixed_joint_lump__collision_collision</collision>
+			<topic>bumper_contact</topic>
+		</contact>
+		<plugin name="collision_plugin" filename="libgazebo_ros_bumper.so">
+			<update_rate>100.0</update_rate>
+			<always_on>true</always_on>
+			<bumperTopicName>/robot_bumper</bumperTopicName>
+			<frameName>base_link</frameName>
+		</plugin>
+	</sensor>
+</gazebo>
+
+</robot>

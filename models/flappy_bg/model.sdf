@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+<model name="flappy_bg">
+  <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <cast_shadows>true</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>28 20</size>
+          </plane>
+        </geometry>
+        <material>
+      <script>
+        <uri>model://flappy_bg/materials/scripts</uri>
+        <uri>model://flappy_bg/materials/textures</uri>
+        <name>flappy_bg/Image</name>
+      </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

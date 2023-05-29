@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="flappy_bird_gazebo">
+
+
+<!--................................ XACRO CONSTANTS .............................. -->
+
+<xacro:property name="chassis_height"                       value="0.5"/>
+<xacro:property name="chassis_length"                       value="0.5"/>
+<xacro:property name="chassis_width"                        value="0.5"/>
+<!-- Z distance to centre of the robot -->
+<xacro:property name="chassis_ground_clearance"             value="${chassis_height/2}"/>
+<xacro:property name="chassis_mass"                         value="1.0"/>
+
+<!-- ............................... LOAD MACROS ................................. -->
+
+<xacro:include filename="$(find flappy_bird_gazebo)/urdf/flappy_bird_gazebo.gazebo"/>
+<xacro:include filename="$(find flappy_bird_gazebo)/urdf/materials.xacro"/>
+<xacro:include filename="$(find flappy_bird_gazebo)/urdf/macros.xacro"/>
+
+<!--.............................................................................. -->
+
+
+
+<!-- ................................ BASE LINK .................................. -->
+
+<link name="base_footprint"/>
+<link name="base_link">
+
+	<collision name='collision'>
+		<!-- <origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+  		<geometry>
+    		<box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+  		</geometry> -->
+
+		<origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://flappy_bird_gazebo/meshes/flappy_bird.dae"/>
+			</geometry>
+	</collision>
+
+	<visual>
+		<!-- <origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+  		<geometry>
+    		<box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+  		</geometry>
+  		<material name="blue"/> -->
+
+		<origin xyz="0 0 ${chassis_ground_clearance}" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://flappy_bird_gazebo/meshes/flappy_bird.dae"/>
+			</geometry>
+	</visual>
+
+	<inertial>
+		<origin xyz="0.20135088 0.03192213 0.05566329"/>
+		<mass value="${chassis_mass}"/>
+		<inertia ixx="0.08795229" ixy="0.00280636" ixz="-0.00038045" iyy="0.09733546" iyz="-0.00140314" izz="0.12910556"/>
+	</inertial>
+
+	<!-- <inertial>
+  		<mass value="${chassis_mass}"/>
+  		<xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_width}" z = "${chassis_height}"/>
+	</inertial> -->
+</link>
+
+
+<joint name="base_footprint_joint" type="fixed">
+	<parent link="base_footprint"/>
+	<child link="base_link"/>
+</joint>
+
+<!-- <gazebo reference="base_link">
+   <material>Gazebo/Blue</material>
+</gazebo> -->
+
+
+</robot>

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+
+		<!-- Camera pose -->
+    <gui>
+			<camera name="gzclient_camera">
+				<pose>0.55 -19.16 7.15 0 0 1.57</pose>
+			</camera>
+    </gui>
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+	    <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+		<!-- keep barebones scene -->
+    <scene>
+      <shadows>0</shadows>
+			<grid>false</grid>
+			<origin_visual>false</origin_visual>
+    </scene>
+
+		<plugin name="flappyBirdPlugin" filename="libflappyBirdPlugin.so"/>
+
+		<!-- Apply camera sim plugin to GUI camera -->
+		<model name="gui_camera_sim">
+			<link name="link">
+				<visual name="visual">
+					<geometry>
+						<empty/>
+					</geometry>
+					<plugin name="CameraSim" filename="libCameraMoverPlugin.so"/>
+				</visual>
+			</link>
+		</model>
+
+  </world>
+</sdf>

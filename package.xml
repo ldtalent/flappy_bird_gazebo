@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>flappy_bird_gazebo</name>
+  <version>0.0.0</version>
+  <description>A ROS1 package designed to play the flappy bird game in Gazebo.</description>
+
+  <maintainer email="leanderdsouza1234@gmail.com">Leander Stephen D'Souza</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+	<build_depend>roscpp</build_depend>
+	<exec_depend>roscpp</exec_depend>
+	<build_export_depend>roscpp</build_export_depend>
+
+	<build_depend>gazebo_msgs</build_depend>
+	<exec_depend>gazebo_msgs</exec_depend>
+	<build_export_depend>gazebo_msgs</build_export_depend>
+
+	<build_depend>roslint</build_depend>
+
+	<exec_depend>xacro</exec_depend>
+	<depend>gazebo_ros</depend>
+	<depend>gazebo</depend>
+
+  <export>
+    <gazebo_ros
+      plugin_path="${prefix}/lib"
+      gazebo_media_path="${prefix}"
+      gazebo_model_path="${prefix}/models"
+      />
+  </export>
+
+</package>

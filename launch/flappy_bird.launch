@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="bird_start_z" default="2.0"/>
+
+	<!-- Launch Gazebo -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find flappy_bird_gazebo)/worlds/flappy_bird.world"/>
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="gui" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+
+	<!-- Launch the robot -->
+	<param name="robot_description" command="$(find xacro)/xacro '$(find flappy_bird_gazebo)/urdf/flappy_bird_gazebo.xacro'" />
+
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+		args="-urdf -param robot_description -model flappy_bird_gazebo -x 0 -y 0 -z $(arg bird_start_z)"/>
+
+	<!-- Launch flyer node -->
+	<node name="flyer_node" pkg="flappy_bird_gazebo" type="flyer.py" respawn="false" output="screen"/>
+
+</launch>
