@@ -17,7 +17,7 @@ A ROS1 package designed to play the flappy bird game in Gazebo.
 	sudo apt install libyaml-cpp-dev
 	```
 
-* Install python dependencies using pip3:
+* Install Python dependencies using pip3:
 
 	```bash
 	pip3 install -r requirements.txt
@@ -43,10 +43,14 @@ A ROS1 package designed to play the flappy bird game in Gazebo.
 	roslaunch flappy_bird_gazebo flappy_bird.launch
 	```
 
-* Optional: configurable parameters such as obstacle gap, inter-obstacle distance, etc can be controlled using [sim_params.yaml](config/sim_params.yaml) file.
+* Optional: configurable parameters such as obstacle gap, inter-obstacle distance, etc., can be controlled using [sim_params.yaml](config/sim_params.yaml) file.
 
 ## Standardization
 
 * The entire package is formatted against [roslint](http://wiki.ros.org/roslint) and [catkin_lint](https://github.com/fkie/catkin_lint).
+
+## Blog
+
+* Check out our [article](https://blog.ldtalentwork.com/2023/06/21/simulating-flappy-bird-in-gazebo-using-ros/) on how we developed this repository and the hurdles we had to go through in doing so.
 
 ###### 💾 EOF
